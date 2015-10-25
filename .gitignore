@@ -1,1 +1,10 @@
+drivers/compat-wireless/.compat_autoconf_*
+drivers/compat-wireless/.tmp_versions/
+drivers/compat-wireless/Module.symvers
+drivers/compat-wireless/modules
 drivers/compat-wireless/include/linux/compat_autoconf.h
+*.o
+*.o.cmd
+*.ko.cmd
+*.order
+*.mod.c
