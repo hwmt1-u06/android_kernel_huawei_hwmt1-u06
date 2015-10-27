@@ -1,1 +1,1 @@
-3345b3034c74bf81f6b23a21ff01d2f6  /home/bangl/android/cm-11.0/kernel/huawei/hwmt1_u06/drivers/compat-wireless/config.mk
+3345b3034c74bf81f6b23a21ff01d2f6  /home/bangl/android/bliss-4.4/kernel/huawei/hwmt1_u06/drivers/compat-wireless/config.mk
