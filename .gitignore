@@ -1,3 +1,7 @@
+drivers/compat-wireless/.compat_base
+drivers/compat-wireless/.compat_base_tree
+drivers/compat-wireless/.compat_base_tree_version
+drivers/compat-wireless/.compat_version
 drivers/compat-wireless/.config
 drivers/compat-wireless/.config.mk_md5sum.txt
 drivers/compat-wireless/.compat_autoconf_*
