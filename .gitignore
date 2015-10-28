@@ -6,6 +6,7 @@ drivers/compat-wireless/Module.symvers
 drivers/compat-wireless/modules
 drivers/compat-wireless/include/linux/compat_autoconf.h
 *.o
+*.o.d
 *.o.cmd
 *.ko.cmd
 *.order
