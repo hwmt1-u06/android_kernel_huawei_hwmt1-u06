@@ -11,3 +11,5 @@ drivers/compat-wireless/include/linux/compat_autoconf.h
 *.ko.cmd
 *.order
 *.mod.c
+*.ko
+
