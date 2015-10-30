@@ -2,7 +2,7 @@
 -include Mate_platform.mk
 VERSION = 3
 PATCHLEVEL = 0
-SUBLEVEL = 30
+SUBLEVEL = 29
 EXTRAVERSION =
 NAME = Sneaky Weasel
 
