@@ -115,7 +115,7 @@ choice
 	config DEFAULT_SIO	
 	       bool "SIO" if IOSCHED_SIO=y
 
-	config SEFAULT_ZEN
+	config DEFAULT_ZEN
 	       bool "ZEN" if IOSCHED_ZEN=y
 
         config DEFAULT_FIFO
