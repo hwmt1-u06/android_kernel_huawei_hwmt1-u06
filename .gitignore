@@ -1,0 +1,15 @@
+drivers/compat-wireless/.config
+drivers/compat-wireless/.config.mk_md5sum.txt
+drivers/compat-wireless/.compat_autoconf_*
+drivers/compat-wireless/.tmp_versions/
+drivers/compat-wireless/Module.symvers
+drivers/compat-wireless/modules
+drivers/compat-wireless/include/linux/compat_autoconf.h
+*.o
+*.o.d
+*.o.cmd
+*.ko.cmd
+*.order
+*.mod.c
+*.ko
+
