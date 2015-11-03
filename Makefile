@@ -376,9 +376,7 @@ KBUILD_AFLAGS_MODULE  := -DMODULE
 KBUILD_CFLAGS_MODULE  := -DMODULE
 KBUILD_LDFLAGS_MODULE := -T $(srctree)/scripts/module-common.lds
 
-ifeq ($(USE_NFC_DEVICE_U9900),true)
-      KBUILD_CFLAGS += -DCONFIG_MATE_NFC_GPIO
-endif
+KBUILD_CFLAGS += -DCONFIG_MATE_NFC_GPIO
 
 # Read KERNELRELEASE from include/config/kernel.release (if it exists)
 KERNELRELEASE = $(shell cat include/config/kernel.release 2> /dev/null)
