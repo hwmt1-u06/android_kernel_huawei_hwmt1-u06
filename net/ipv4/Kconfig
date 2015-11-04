@@ -444,6 +444,12 @@ config TCP_CONG_CUBIC
 	among other techniques.
 	See http://www.csc.ncsu.edu/faculty/rhee/export/bitcp/cubic-paper.pdf
 
+config TCP_CONG_MW3
+	tristate "MW3 TCP"
+	default y
+	---help---
+	This is version 1.0 of TCP which uses a mw3 function among other techniques.
+
 config TCP_CONG_WESTWOOD
 	tristate "TCP Westwood+"
 	default m
@@ -589,6 +595,9 @@ choice
 	config DEFAULT_WESTWOOD
 		bool "Westwood" if TCP_CONG_WESTWOOD=y
 
+	config DEFAULT_MW3
+		bool "MW3" if TCP_CONG_MW3=y
+
 	config DEFAULT_RENO
 		bool "Reno"
 
@@ -601,6 +610,13 @@ config TCP_CONG_CUBIC
 	depends on !TCP_CONG_ADVANCED
 	default y
 
+config TCP_CONG_MW3
+	tristate "MW3 TCP"
+	depends on !TCP_CONG_ADVANCED
+	default y
+	---help---
+	  This is version 1.0 of TCP which uses a mw3 function among other techniques.
+
 config DEFAULT_TCP_CONG
 	string
 	default "bic" if DEFAULT_BIC
@@ -611,6 +627,7 @@ config DEFAULT_TCP_CONG
 	default "westwood" if DEFAULT_WESTWOOD
 	default "veno" if DEFAULT_VENO
 	default "reno" if DEFAULT_RENO
+	default "mw3" if DEFAULT_MW3
 	default "cubic"
 
 config TCP_MD5SIG
@@ -624,10 +641,3 @@ config TCP_MD5SIG
 	  on the Internet.
 
 	  If unsure, say N.
-
-config TCP_CONG_MW3
-	tristate "MW3 TCP"
-	depends on TCP_CONG_ADVANCED
-	default n
-	---help---
-	  This is version 1.0 of TCP which uses a mw3 function among other techniques.
