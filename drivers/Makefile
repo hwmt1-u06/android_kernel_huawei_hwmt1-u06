@@ -131,6 +131,4 @@ obj-$(CONFIG_HUAWEI_HW_DEV_DCT) += devdetect/
 
 obj-$(CONFIG_SRECORDER)     += srecorder/
 
-ifeq ($(USE_NFC_DEVICE),true)
 obj-y		+= nfc/
-endif
