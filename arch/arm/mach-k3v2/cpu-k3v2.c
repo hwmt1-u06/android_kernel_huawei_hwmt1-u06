@@ -1312,7 +1312,11 @@ static int __cpuinit k3v2_cpu_init(struct cpufreq_policy *policy)
 	}
 
 	policy->min = PARAM_MIN(cpu);
+#ifdef CONFIG_CPU_DEFAULT_FREQ
+	policy->max = CONFIG_CPU_DEFAULT_FREQ;
+#else
 	policy->max = PARAM_MAX(cpu);
+#endif
 
 	if (policy->cpu == 0) {
 		/*add qos notifier*/

@@ -191,7 +191,7 @@ DEFINE_SPINLOCK(mcureg_lock);
 #define INT_MASK_OFFSET		(0xF008)
 #define DEBUG_OFFSET		(0xF00C)
 
-int max_freq_array[] = {1200000,1399999,1400000,1500000,1508000,1200000};
+int max_freq_array[] = {1200000,1399999,1400000,1500000,1508000,1600000};
 
 struct ipps2 {
 	void __iomem			*mmio;

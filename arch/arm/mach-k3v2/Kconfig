@@ -67,6 +67,13 @@ config CPU_MAX_FREQ
 	help
 	  CPU max frequency
 
+config CPU_DEFAULT_FREQ
+	int "CPU default max frequency"
+	default 1500000
+	range 150000 1600000
+	help
+	  CPU max frequency at boot
+
 config TRIM_VOL
 	bool "TRIM Voltage support"
 	default n
