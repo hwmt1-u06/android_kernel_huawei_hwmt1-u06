@@ -60,6 +60,13 @@ config IPPS_PARAM_ALTERNATIVE
 	help
 	  IPPS parameters seperate from firmware.
 
+config CPU_MAX_FREQ
+	int "CPU max frequency"
+	default 1600000
+	range 150000 1600000
+	help
+	  CPU max frequency
+
 config TRIM_VOL
 	bool "TRIM Voltage support"
 	default n

@@ -810,7 +810,6 @@ static void cpu_profile_adjust(struct ipps2 *ipps2)
 		}
 	}
 #endif
-        max_freq = 1600000;
 	index = freq_to_index(ipps2, CPU_PROFILE_OFFSET, max_freq);
 	index_freq = index_to_freq(ipps2,CPU_PROFILE_OFFSET,index);
 	p = (union param *)&(ipps2->shadow[CPU_PARAM_OFFSET]);
