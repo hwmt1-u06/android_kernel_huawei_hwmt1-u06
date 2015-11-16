@@ -70,7 +70,7 @@ config CPU_MAX_FREQ
 config CPU_DEFAULT_FREQ
 	int "CPU default max frequency"
 	default 1500000
-	range 150000 1600000
+	range 150000 1700000
 	help
 	  CPU max frequency at boot
 
