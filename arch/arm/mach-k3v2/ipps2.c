@@ -191,8 +191,6 @@ DEFINE_SPINLOCK(mcureg_lock);
 #define INT_MASK_OFFSET		(0xF008)
 #define DEBUG_OFFSET		(0xF00C)
 
-int max_freq_array[] = {1200000,1399999,1400000,1500000,1508000,1600000};
-
 struct ipps2 {
 	void __iomem			*mmio;
 	struct resource         *res;
@@ -747,69 +745,8 @@ static void cpu_profile_adjust(struct ipps2 *ipps2)
 	unsigned long efuse0, efuse2, efuse3;
 	union param *p;
 
-#ifdef  CONFIG_CPU_MAX_FREQ
 	max_freq = CONFIG_CPU_MAX_FREQ;
-#else
-	efuse0 = readl(IO_ADDRESS(REG_BASE_PCTRL)+0x1DC);
-	efuse_version = (efuse0 >> 29) & 0x07;
 
-	max_freq = 1200000;
-	if (efuse_version == 1) {
-		efuse2 = readl(IO_ADDRESS(REG_BASE_PCTRL)+0x1D4);
-		efuse3 = readl(IO_ADDRESS(REG_BASE_PCTRL)+0x1D0);
-
-		cpu_level = (efuse0 >> 18) & 0x3F;
-		cpu_iddq = ((efuse2 & 0x01) << 7) | (efuse3 >> 25);
-		date = (efuse2 >> 17) & 0x1FFF;
-		dev_info(ipps2->idev->dev, "efuse info:%d,%d,%d,%d\n", efuse_version, cpu_level, cpu_iddq, date);
-		if (date > 0x1952) {   /* date 2012-10-18, after is B40, before is B30*/
-			if ((cpu_level == 8) && (cpu_iddq <= 40)) {
-				max_freq = max_freq_array[4];//1508000;
-			} else if ((cpu_level == 7) && (cpu_iddq <= 40)) {
-				max_freq = max_freq_array[3];//1500000;
-			} else if ((cpu_level >= 3) && (cpu_level <= 8) && (cpu_iddq <= 50)) {
-				max_freq = max_freq_array[1];//1400000 - 1;
-			} else {
-				max_freq = max_freq_array[0];//1200000;
-			}
-		} else {
-			if ((cpu_level >= 5) && (cpu_level <= 7) && (cpu_iddq <= 35)) {
-				max_freq = max_freq_array[2];//1400000;	/* 1400+ */
-			} else if ((cpu_iddq <= 40) && (cpu_level >= 3) && (cpu_level <= 7)) {
-				max_freq = max_freq_array[1];//1400000 - 1;
-			} else {
-				max_freq = max_freq_array[0];//1200000;
-			}
-		}
-	} else if (efuse_version >= 2) {
-		cpu_level = (efuse0 >> 22) & 0x0F;
-		update_level = (efuse0 >> 26) & 0x07;
-		dev_info(ipps2->idev->dev, "efuse info:%d,%d,%d\n", efuse_version, cpu_level, update_level);
-		if (update_level > 2) {
-			index = cpu_level - (update_level - 2);
-		} else {
-			index = cpu_level + update_level;
-		}
-		index--;
-		if (index < 0) {
-			index = 0;
-		}
-		if (index > (ARRAY_SIZE(max_freq_array) - 1)) {
-			index = ARRAY_SIZE(max_freq_array) - 1;
-		}
-		max_freq = max_freq_array[index];
-	} else {
-		max_freq = get_cpu_max_freq();
-		if (max_freq == 1400) {
-			max_freq = 1400000 - 1;
-			dev_info(ipps2->idev->dev, "set max cpufreq 1.4G according to NV\n");
-		}
-		else {
-			max_freq = 1200000; /* Default 1200M */
-			dev_info(ipps2->idev->dev, "set max cpufreq 1.2G according to NV\n");
-		}
-	}
-#endif
 	index = freq_to_index(ipps2, CPU_PROFILE_OFFSET, max_freq);
 	index_freq = index_to_freq(ipps2,CPU_PROFILE_OFFSET,index);
 	p = (union param *)&(ipps2->shadow[CPU_PARAM_OFFSET]);

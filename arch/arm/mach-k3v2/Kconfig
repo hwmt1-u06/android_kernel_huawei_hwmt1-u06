@@ -62,8 +62,8 @@ config IPPS_PARAM_ALTERNATIVE
 
 config CPU_MAX_FREQ
 	int "CPU max frequency"
-	default 1600000
-	range 150000 1600000
+	default 1700000
+	range 150000 1700000
 	help
 	  CPU max frequency
 
