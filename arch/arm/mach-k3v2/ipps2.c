@@ -745,7 +745,11 @@ static void cpu_profile_adjust(struct ipps2 *ipps2)
 	unsigned long efuse0, efuse2, efuse3;
 	union param *p;
 
-	max_freq = CONFIG_CPU_MAX_FREQ;
+#ifdef CONFIG_CPU_MAX_FREQ
+    max_freq = CONFIG_CPU_MAX_FREQ;
+#else
+    max_freq = 1500000;
+#endif
 
 	index = freq_to_index(ipps2, CPU_PROFILE_OFFSET, max_freq);
 	index_freq = index_to_freq(ipps2,CPU_PROFILE_OFFSET,index);
